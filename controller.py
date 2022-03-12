@@ -34,6 +34,9 @@ class PcController():
         self.text = text
         self.CommandCenter()
 
+    def press(self, text):
+        text = text[:text.find("_press")]
+        pyautogui.press(text)
     def CommandCenter(self):
         text = self.text
         if ("shutdown" or "shut down") == text:
@@ -53,6 +56,8 @@ class PcController():
                 pyautogui.press('volumeup')
                 # pyautogui.press('volumeup')
                 # pyautogui.press('volumeup')
+        elif ("press" in text):
+            self.press(text)
         elif ("fast forward") == text:
             pyautogui.press("right")
         elif ("back forward") == text:
