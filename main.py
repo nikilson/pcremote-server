@@ -5,7 +5,7 @@ import controller
 listensocket = socket.socket()
 Port = 8005
 maxConnections = 999
-IP = socket.gethostbyname(socket.gethostname())
+IP = socket.gethostbyname_ex(socket.gethostname())[-1][-1]
 listensocket.bind(('', Port))
 
 control = controller.PcController()
