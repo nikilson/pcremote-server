@@ -55,14 +55,16 @@ class PcController():
         elif ("play") == text:
             pyautogui.press("space")
         elif "volume" in text:
-            if "down" in text:
+            if "up" in text:
+                pyautogui.press('volumeup')
+                pyautogui.press('volumeup')
+            elif "down" in text:
+                pyautogui.press('volumedown')
                 pyautogui.press('volumedown')
                 # pyautogui.press('volumedown')
-                # pyautogui.press('volumedown')
-            elif "up" in text:
-                pyautogui.press('volumeup')
                 # pyautogui.press('volumeup')
-                # pyautogui.press('volumeup')
+            else:
+                pass
         elif ("press" in text):
             self.press(text)
         elif ("hotkey" in text):

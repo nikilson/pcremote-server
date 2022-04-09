@@ -20,13 +20,16 @@ while True:
     print("New connection made!!")
     running = True
     while running:
-
-        message = clientsocket.recv(1024).decode()
-        print(f"client : {message}")
-        control.call(message)
-    
-        if not (message == ""):
-            time.sleep(1)
-        else:
-            clientsocket.close()
+        try:
+            message = clientsocket.recv(1024).decode()
+            print(f"client : {message}")
+            control.call(message)
+        
+            if not (message == ""):
+                # time.sleep(1)
+                pass
+            else:
+                clientsocket.close()
+                running = False
+        except:
             running = False
