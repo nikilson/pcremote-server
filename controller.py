@@ -28,6 +28,7 @@ class PcController():
 
     def CancelShutDown(self):
         cont = "shutdown /a"
+        print("Okay, ShutDown cancelled!")
         os.system(cont)
 
     def call(self, text):
@@ -46,14 +47,16 @@ class PcController():
         pyautogui.press(text)
     def CommandCenter(self):
         text = self.text
-        if ("shutdown" or "shut down") == text:
+
+        if "stop shutdown" == text:
+            self.CancelShutDown()
+        elif ("shutdown") in text:
             # text = str(update.message.text).lower()
             sts = self.ShutDown()
             # update.message.reply_text(sts)
         elif "quit" == text:
             quit()
-        elif ("play") == text:
-            pyautogui.press("space")
+
         elif "volume" in text:
             if "up" in text:
                 pyautogui.press('volumeup')
@@ -69,28 +72,14 @@ class PcController():
             self.press(text)
         elif ("hotkey" in text):
             self.hotkey_call(text)
-        elif ("fast forward") == text:
-            pyautogui.press("right")
-        elif ("back forward") == text:
-            pyautogui.press("left")
-        elif ("pause") == text:
-            pyautogui.press("space")
+
         elif ("play" in text) and ("play" != text):
             whatkit_controller.YTvideo(text)
         elif "mute" == text:
             pyautogui.press("volumemute")
         elif ("maximize" and "window") in text:
             MaxWindow()
-        elif ("fullscreen" in text ) or ("full screen"in text):
-            pyautogui.press("f")
-        elif ("cancel" and "shutdown") in text:
-            self.CancelShutDown()
-            update.message.reply_text("Okay, ShutDown cancelled!")
-        elif ("stop" and "shutdown") in text:
-            CancelShutDown()
-            update.message.reply_text("Okay, ShutDown cancelled!")
-        elif "ctrl+tab" == text:
-            pyautogui.hotkey("ctrl", "tab")
+
         elif "multitask" == text:
             if self.multitask_btn == "mult":
                 pyautogui.hotkey("ctrl", "alt", "tab")
@@ -100,16 +89,6 @@ class PcController():
                 self.multitask_btn = "mult"
         # elif "ctrl+alt+tab" == text:
         #     pyautogui.hotkey("ctrl", "alt", "tab")
-        elif "alt+f4" == text:
-            pyautogui.hotkey("alt", "f4")
-        elif "ctrl+f4" == text:
-            pyautogui.hotkey("ctrl", "f4")
-        elif "ctrl+win+right" == text:
-            pyautogui.hotkey("ctrl", "win", "right")
-        elif "ctrl+win+left" == text:
-            pyautogui.hotkey("ctrl", "win", "left")
-        elif "hotkeys" == text:
-            self.InlineButton_Hotkeys(update, content)
             # self.buttonfun(update, content)
         else:
             reply_controller = directory_controller.MainController(text)
