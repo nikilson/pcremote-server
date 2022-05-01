@@ -24,7 +24,10 @@ while True:
             message = clientsocket.recv(1024).decode()
             print(f"client : {message}")
             control.call(message)
-        
+            return_msg = control.return_text
+            # print(return_msg)
+            if (message=="pwd") or (message=="ls"):
+                clientsocket.send(bytes(return_msg + "\n", "utf-8"))
             if not (message == ""):
                 # time.sleep(1)
                 pass

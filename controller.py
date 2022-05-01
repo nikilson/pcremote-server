@@ -101,6 +101,7 @@ class PcController():
                 print("Sorry, I can't do that!")
             elif len(return_text) > 1:
                 # update.message.reply_text(return_text)
-                print(return_text)
+                #print(return_text)
+                 self.return_text = return_text
             else:
                 pass

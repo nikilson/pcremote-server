@@ -57,7 +57,10 @@ class MainController():
         dir_list = os.listdir(self.current_location)
 
         for n, txt in enumerate(dir_list):
-            self.return_text += f"{n}) {txt}\n"
+            if (n==0):
+                self.return_text += f"{txt}"
+            else:
+                self.return_text += f",{txt}"
 
     def open_file(self):
         dir_list = os.listdir(self.current_location)
@@ -71,7 +74,8 @@ class MainController():
         tmp_location = path.join(self.current_location, self.text)
         tmp_location = path.realpath(tmp_location)
         if path.isdir(tmp_location):
-            self.return_text = f"{self.text} is a directory!!"
+            # self.return_text = f"{self.text} is a directory!!"
+            self.change_directory()
             # os.chdir(self.current_location)
         elif path.isfile(tmp_location):
             os.startfile(tmp_location)
