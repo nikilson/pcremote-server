@@ -1,4 +1,5 @@
 import time, pyautogui
+import win32api
 import webbrowser as web
 from whatkit import playonyt
 from os import path
@@ -11,6 +12,8 @@ class MainController():
         # self.find_home_loc()
         self.return_text = ""
         self.current_location = os.getcwd()
+        self.drives = win32api.GetLogicalDriveStrings()
+        self.drives = self.drives.split('\000')[:-1]
         # os.chdir(self.home_location)
         self.command_reader()
 
@@ -40,6 +43,7 @@ class MainController():
                 pass
         tmp_location = path.join(self.current_location, self.text)
         tmp_location = path.realpath(tmp_location)
+
         if path.isdir(tmp_location):
             self.current_location = tmp_location
             os.chdir(self.current_location)
@@ -47,6 +51,7 @@ class MainController():
             self.return_text = f"{self.text} is a file!!"
         else:
             self.return_text = "Invaild location!!" 
+            # print("Invaild")
 
         # print(self.home_location)
 
@@ -54,8 +59,11 @@ class MainController():
         self.return_text = self.current_location
 
     def list_working_directory(self):
+        print(self.current_location)
         dir_list = os.listdir(self.current_location)
-
+        if (self.current_location in self.drives):
+            dir_list += self.drives
+            
         for n, txt in enumerate(dir_list):
             if (n==0):
                 self.return_text += f"{txt}"
