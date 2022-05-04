@@ -45,6 +45,12 @@ class PcController():
     def press(self, text):
         text = text[:text.find("_press")]
         pyautogui.press(text)
+
+    def getReturnValue(self):
+        if (len(self.return_text) > 0):
+            return self.return_text
+        else:
+            return "None"
     def CommandCenter(self):
         text = self.text
 
@@ -97,7 +103,7 @@ class PcController():
             except Exception as e:
                 return_text = ""
             if return_text == 0:
-                # update.message.reply_text("Sorry, I can't do that!") 
+                # update.message.reply_text("Sorry, I can't do that!")
                 print("Sorry, I can't do that!")
             elif len(return_text) > 1:
                 # update.message.reply_text(return_text)

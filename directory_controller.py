@@ -1,5 +1,5 @@
 import time, pyautogui
-import win32api
+from win32api import GetLogicalDriveStrings
 import webbrowser as web
 from whatkit import playonyt
 from os import path
@@ -12,7 +12,7 @@ class MainController():
         # self.find_home_loc()
         self.return_text = ""
         self.current_location = os.getcwd()
-        self.drives = win32api.GetLogicalDriveStrings()
+        self.drives = GetLogicalDriveStrings()
         self.drives = self.drives.split('\000')[:-1]
         # os.chdir(self.home_location)
         self.command_reader()
