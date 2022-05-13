@@ -68,7 +68,7 @@ class MainController():
             if (n==0):
                 self.return_text += f"{txt}"
             else:
-                self.return_text += f",{txt}"
+                self.return_text += f"/{txt}"
 
     def open_file(self):
         dir_list = os.listdir(self.current_location)

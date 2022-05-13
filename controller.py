@@ -79,7 +79,7 @@ class PcController():
         elif ("hotkey" in text):
             self.hotkey_call(text)
 
-        elif ("play" in text) and ("play" != text):
+        elif ("play " == text[:5]):
             whatkit_controller.YTvideo(text)
         elif "mute" == text:
             pyautogui.press("volumemute")
