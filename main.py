@@ -17,6 +17,8 @@ print("Server started at " + IP + " on port " + str(Port))
 while True:
     listensocket.listen(maxConnections) 
     (clientsocket, address) = listensocket.accept()
+    # print(clientsocket.gettimeout())
+    clientsocket.settimeout(180)
     print("New connection made!!")
     return_msg = "None"
     message = "None"
@@ -30,13 +32,13 @@ while True:
             if (message=="pwd") or (message=="ls"):
                 return_msg = control.getReturnValue()
                 clientsocket.send(bytes(return_msg + "\n", "utf-8"))
-
-
             if not (message == ""):
                 # time.sleep(1)
                 pass
             else:
                 clientsocket.close()
                 running = False
+                continue
         except:
             running = False
+            continue
