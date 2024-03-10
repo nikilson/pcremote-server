@@ -23,10 +23,6 @@ class PcController():
         ans = "Your PC will be turned off within 20 Seconds, 'Stop Shutdown' to Stop the shutdown"
         return ans
 
-    def CancelShutDown(self):
-        cont = "shutdown /a"
-        print("Okay, ShutDown cancelled!")
-        os.system(cont)
 
     def call(self, text):
         self.text = text
