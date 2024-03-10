@@ -1,3 +1,4 @@
+import webbrowser as web
 import requests
 
 
@@ -20,3 +21,7 @@ def playonyt(topic):
 
     # print("Videos found, opening most recent video")
     # web.open("https://www.youtube.com"+lst[count-5])
+def play_on_yt(song):
+    song = (song.lower()).replace("play","")
+    link = playonyt(song)
+    web.open(link, new=0, autoraise=True)

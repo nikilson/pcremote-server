@@ -1,7 +1,7 @@
 import time, pyautogui
 from win32api import GetLogicalDriveStrings
 import webbrowser as web
-from whatkit import playonyt
+from utils.whatkit import playonyt
 from os import path
 import os
 

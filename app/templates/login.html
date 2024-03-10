@@ -1,0 +1,37 @@
+<!-- admin.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">Admin Login</h2>
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Username" id="username" required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Password" id="password" required>
+        </div>
+        <button type="button" class="btn btn-primary btn-block" onclick="login()">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  function login() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    if (password === "admin") {
+      alert("Login successful!");
+      // Redirect to admin dashboard or perform other actions
+    } else {
+      alert("Incorrect password!");
+    }
+  }
+</script>
+{% endblock %}
