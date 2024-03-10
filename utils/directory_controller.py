@@ -95,7 +95,7 @@ class MainController():
 def find_home_loc():
     home_location = path.expanduser('~')
     try:
-        home_loc_file = open("home.txt", 'r')
+        home_loc_file = open("../home.txt", 'r')
         tmp_location = home_loc_file.read()
         if path.isdir(home_location):
             home_location = tmp_location
@@ -104,7 +104,7 @@ def find_home_loc():
 
         home_loc_file.close()
     except Exception as e:
-        home_loc_file = open("home.txt", 'w')
+        home_loc_file = open("../home.txt", 'w')
         home_loc_file.write(home_location)
         home_loc_file.close()
     os.chdir(home_location)
