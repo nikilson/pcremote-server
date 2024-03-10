@@ -12,10 +12,9 @@ control = controller.PcController()
 
 print("Server started at " + IP + " on port " + str(Port))
 
-
-#kamal
+# kamal
 while True:
-    listensocket.listen(maxConnections) 
+    listensocket.listen(maxConnections)
     (clientsocket, address) = listensocket.accept()
     # print(clientsocket.gettimeout())
     clientsocket.settimeout(180)
@@ -29,7 +28,7 @@ while True:
             print(f"client : {message}")
             control.call(message)
             # print(return_msg)
-            if (message=="pwd") or (message=="ls"):
+            if (message == "pwd") or (message == "ls"):
                 return_msg = control.getReturnValue()
                 clientsocket.send(bytes(return_msg + "\n", "utf-8"))
             if not (message == ""):

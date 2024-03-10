@@ -5,6 +5,7 @@ from whatkit import playonyt
 from os import path
 import os
 
+
 class MainController():
 
     def __init__(self, text):
@@ -50,7 +51,7 @@ class MainController():
         elif path.isfile(tmp_location):
             self.return_text = f"{self.text} is a file!!"
         else:
-            self.return_text = "Invaild location!!" 
+            self.return_text = "Invalid location!!"
             # print("Invaild")
 
         # print(self.home_location)
@@ -61,11 +62,11 @@ class MainController():
     def list_working_directory(self):
         print(self.current_location)
         dir_list = os.listdir(self.current_location)
-        if (self.current_location in self.drives):
+        if self.current_location in self.drives:
             dir_list += self.drives
-            
+
         for n, txt in enumerate(dir_list):
-            if (n==0):
+            if (n == 0):
                 self.return_text += f"{txt}"
             else:
                 self.return_text += f"/{txt}"
@@ -90,6 +91,7 @@ class MainController():
         else:
             self.return_text = "Invaild file!!"
 
+
 def find_home_loc():
     home_location = path.expanduser('~')
     try:
@@ -107,8 +109,9 @@ def find_home_loc():
         home_loc_file.close()
     os.chdir(home_location)
 
+
 def YTvideo(song):
-    song = (song.lower()).replace("play","")
+    song = (song.lower()).replace("play", "")
     link = playonyt(song)
     web.open(link)
     time.sleep(10)
@@ -116,6 +119,6 @@ def YTvideo(song):
     pyautogui.press("f")
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
     MainController("cd ../../../../Documents/mydir")
     # YTvideo("play tech with tim")

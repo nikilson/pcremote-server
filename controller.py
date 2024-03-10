@@ -1,6 +1,8 @@
 import os, pyautogui
 import directory_controller
 import whatkit_controller
+
+
 # Dependencies
 # pip install telegram
 # pip install python-telegram-bot
@@ -9,7 +11,7 @@ import whatkit_controller
 class PcController():
     # change to home directory
     directory_controller.find_home_loc()
-    
+
     def __init__(self):
         self.multitask_btn = "mult"
 
@@ -20,10 +22,10 @@ class PcController():
     #     button_text = [["⬅️", "Multitask", "➡️"], "Switch Tabs", ["Previous Workpace", "Next Workspace"], "Close Tab", "Close Window"]
     #     button_reply = [["back forward", "multitask", "fast forward"], "ctrl+tab", ["ctrl+win+left", "ctrl+win+right"], "ctrl+f4", "alt+f4"]
 
-    def ShutDown(self, time1 = 20):
+    def ShutDown(self, time1=20):
         cont = "shutdown -s -t %s" % time1
         os.system(cont)
-        ans =  "Your PC will be turned off within 20 Seconds, 'Stop Shutdown' to Stop the shutdown"
+        ans = "Your PC will be turned off within 20 Seconds, 'Stop Shutdown' to Stop the shutdown"
         return ans
 
     def CancelShutDown(self):
@@ -51,6 +53,7 @@ class PcController():
             return self.return_text
         else:
             return "None"
+
     def CommandCenter(self):
         text = self.text
 
@@ -95,7 +98,7 @@ class PcController():
                 self.multitask_btn = "mult"
         # elif "ctrl+alt+tab" == text:
         #     pyautogui.hotkey("ctrl", "alt", "tab")
-            # self.buttonfun(update, content)
+        # self.buttonfun(update, content)
         else:
             reply_controller = directory_controller.MainController(text)
             try:
@@ -107,7 +110,7 @@ class PcController():
                 print("Sorry, I can't do that!")
             elif len(return_text) > 1:
                 # update.message.reply_text(return_text)
-                #print(return_text)
-                 self.return_text = return_text
+                # print(return_text)
+                self.return_text = return_text
             else:
                 pass
