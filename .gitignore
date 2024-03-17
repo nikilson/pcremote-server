@@ -4,6 +4,5 @@
 /servenv/
 /.idea/
 /.collections/
-/app.bak
-/app.dat
-/app.dir
+/data/
+/.env

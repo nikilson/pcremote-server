@@ -2,3 +2,4 @@ requests
 Flask
 PyAutoGUI
 pywin32
+python-dotenv
