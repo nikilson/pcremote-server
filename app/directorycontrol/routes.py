@@ -1,7 +1,8 @@
 from flask import json
 from flask import request
 from app.directorycontrol import bp
-from utils.directory_controller import get_current_directory, list_working_directory
+from utils.directory_controller import get_current_directory, list_working_directory, change_active_directory, \
+    open_target
 from os import path
 from utils.datamanager import put_value
 
@@ -35,3 +36,23 @@ def list_working_directory_cont():
         return json.dumps({'success': True, 'list': list_dir}), 200, CONTENT_TYPE
     except Exception as e:
         return json.dumps({'success': False, 'error': e}), 400, CONTENT_TYPE
+
+
+@bp.route('/cd/', methods=['POST'])
+def change_active_directory_cont():
+    target = request.args.get("target")
+    if not target:
+        return json.dumps({'success': False, 'error': "Parameter 'target' not found"}), 404, CONTENT_TYPE
+    pwd = get_current_directory()
+    response, code, status = change_active_directory(pwd, target)
+    return json.dumps({'success': status, 'message': response}), code, CONTENT_TYPE
+
+
+@bp.route('/open/', methods=['POST'])
+def open_target_cont():
+    target = request.args.get("target")
+    if not target:
+        return json.dumps({'success': False, 'error': "Parameter 'target' not found"}), 404, CONTENT_TYPE
+    pwd = get_current_directory()
+    response, code, status = open_target(pwd, target)
+    return json.dumps({'success': status, 'message': response}), code, CONTENT_TYPE

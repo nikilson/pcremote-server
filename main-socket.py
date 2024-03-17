@@ -28,7 +28,7 @@ while True:
             control.call(message)
             # print(return_msg)
             if (message == "pwd") or (message == "ls"):
-                return_msg = control.getReturnValue()
+                return_msg = control.get_return_value()
                 clientsocket.send(bytes(return_msg + "\n", "utf-8"))
             if not (message == ""):
                 # time.sleep(1)
