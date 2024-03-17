@@ -1,4 +1,5 @@
-import time, pyautogui
+import time
+import pyautogui
 from win32api import GetLogicalDriveStrings
 import webbrowser as web
 from utils.whatkit import playonyt
@@ -92,22 +93,26 @@ class MainController():
             self.return_text = "Invaild file!!"
 
 
-def find_home_loc():
+def cd_home_location(current_location):
     home_location = path.expanduser('~')
-    try:
-        home_loc_file = open("../home.txt", 'r')
-        tmp_location = home_loc_file.read()
-        if path.isdir(home_location):
-            home_location = tmp_location
-        # else:
-        #     print("Invaild home location!!")
+    if current_location and path.isdir(current_location):
+        os.chdir(current_location)
+    else:
+        os.chdir(home_location)
+        current_location = home_location
+    return f"Current directory has been changed to {current_location}"
 
-        home_loc_file.close()
-    except Exception as e:
-        home_loc_file = open("../home.txt", 'w')
-        home_loc_file.write(home_location)
-        home_loc_file.close()
-    os.chdir(home_location)
+
+def list_working_directory(current_location):
+    dir_list = os.listdir(current_location)
+    drives = GetLogicalDriveStrings().split('\000')[:-1]
+    if current_location in drives:
+        dir_list += drives
+    return dir_list
+
+
+def get_current_directory():
+    return os.getcwd()
 
 
 def YTvideo(song):

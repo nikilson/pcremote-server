@@ -5,7 +5,7 @@ import directory_controller
 
 class PcController():
     # change to home directory
-    directory_controller.find_home_loc()
+    directory_controller.cd_home_location()
 
     def __init__(self):
         self.multitask_btn = "mult"
@@ -17,7 +17,7 @@ class PcController():
     #     button_text = [["⬅️", "Multitask", "➡️"], "Switch Tabs", ["Previous Workpace", "Next Workspace"], "Close Tab", "Close Window"]
     #     button_reply = [["back forward", "multitask", "fast forward"], "ctrl+tab", ["ctrl+win+left", "ctrl+win+right"], "ctrl+f4", "alt+f4"]
 
-    def ShutDown(self, time1=20):
+    def shut_down(self, time1=20):
         cont = "shutdown -s -t %s" % time1
         os.system(cont)
         ans = "Your PC will be turned off within 20 Seconds, 'Stop Shutdown' to Stop the shutdown"
@@ -26,7 +26,7 @@ class PcController():
 
     def call(self, text):
         self.text = text
-        self.CommandCenter()
+        self.command_center()
 
     def hotkey_call(self, text):
         text = text.split("_")
@@ -39,20 +39,20 @@ class PcController():
         text = text[:text.find("_press")]
         pyautogui.press(text)
 
-    def getReturnValue(self):
+    def get_return_value(self):
         if (len(self.return_text) > 0):
             return self.return_text
         else:
             return "None"
 
-    def CommandCenter(self):
+    def command_center(self):
         text = self.text
 
         if "stop shutdown" == text:
             self.CancelShutDown()
         elif ("shutdown") in text:
             # text = str(update.message.text).lower()
-            sts = self.ShutDown()
+            sts = self.shut_down()
             # update.message.reply_text(sts)
         elif "quit" == text:
             quit()
